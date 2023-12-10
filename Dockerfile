@@ -1,5 +1,8 @@
+#Lets use a more "recent" version of ubuntu
 FROM ubuntu:20.04
 LABEL maintainer="wingnut0310 <wingnut0310@gmail.com>"
+#Since i'm modifying this script, i give myself the permission to add myself to the group
+LABEL recodestudios.modified-by="Kevin Roussel <kevin.rslfr@gmail.com>"
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
@@ -18,6 +21,6 @@ COPY /run_gotty.sh /run_gotty.sh
 
 RUN chmod 744 /run_gotty.sh
 
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ["/bin/bash","/run_gotty.sh"]
