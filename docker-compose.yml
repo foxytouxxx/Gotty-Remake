@@ -9,5 +9,5 @@ services:
     stdin_open: true
     tty: true
     environment:
-      - GOTTY_USERNAME=fox  # Set your actual username here
-      - GOTTY_PASSWORD=fox  # Set your actual secure password here
+      - GOTTY_USERNAME=myusername  # Set your actual username here
+      - GOTTY_PASSWORD=mypassword  # Set your actual secure password here
