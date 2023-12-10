@@ -4,10 +4,15 @@ services:
   my-gotty:
     hostname: mygotty
     ports:
-      - 8989:8080
-    image: modenaf360/gotty:latest
-    stdin_open: true
-    tty: true
+      - 8080:8080
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
     environment:
-      - GOTTY_USERNAME=root
-      - GOTTY_PASSWORD=1234
+      - TERM=xterm-256color
+    command: ["/lib/systemd/systemd"]
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
