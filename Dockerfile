@@ -1,36 +1,23 @@
-# Use a base image that supports systemd
 FROM ubuntu:20.04
+LABEL maintainer="wingnut0310 <wingnut0310@gmail.com>"
 
-# Install necessary packages
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get install -y systemd && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Download and install gotty
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV GOTTY_TAG_VER v1.0.1
-RUN curl -sLk https://github.com/yudai/gotty/releases/download/${GOTTY_TAG_VER}/gotty_linux_amd64.tar.gz \
-    | tar xzC /usr/local/bin
 
-# Expose the gotty port
+RUN apt-get -y update && \
+    apt-get install -y curl && \
+    curl -sLk https://github.com/yudai/gotty/releases/download/${GOTTY_TAG_VER}/gotty_linux_amd64.tar.gz \
+    | tar xzC /usr/local/bin && \
+    apt-get purge --auto-remove -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists*
+
+
+COPY /run_gotty.sh /run_gotty.sh
+
+RUN chmod 744 /run_gotty.sh
+
 EXPOSE 8080
 
-# Create a systemd service for gotty
-RUN echo "[Unit]\n\
-Description=gotty\n\
-After=network.target\n\
-\n\
-[Service]\n\
-ExecStart=/usr/local/bin/gotty --permit-write --reconnect /bin/bash\n\
-Restart=always\n\
-User=root\n\
-\n\
-[Install]\n\
-WantedBy=default.target" > /etc/systemd/system/gotty.service
-
-# Enable and start the gotty service
-RUN systemctl enable gotty.service
-
-# Start systemd
-CMD ["/lib/systemd/systemd"]
+CMD ["/bin/bash","/run_gotty.sh"]
