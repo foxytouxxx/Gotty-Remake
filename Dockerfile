@@ -18,6 +18,6 @@ COPY /run_gotty.sh /run_gotty.sh
 
 RUN chmod 744 /run_gotty.sh
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD ["/bin/bash","/run_gotty.sh"]
