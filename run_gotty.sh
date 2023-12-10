@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x  # Enable debugging output
+
 # Set the default username and password for testing
 GOTTY_USERNAME=${GOTTY_USERNAME:-root}
 GOTTY_PASSWORD=${GOTTY_PASSWORD:-1234}
