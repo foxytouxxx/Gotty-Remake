@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:20.04
 LABEL maintainer="wingnut0310 <wingnut0310@gmail.com>"
 
 ENV LANG en_US.UTF-8
