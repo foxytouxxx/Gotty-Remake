@@ -1,8 +1,12 @@
-my-gotty:
-  hostname: mygotty
-  ports:
-  - 8989:8080
-  tty: true
-  image: modenaf360/gotty:latest
-  stdin_open: true
-  tty: true                     #using bash TTY mode (pseudo-TTY)
+version: '3'
+
+services:
+  my-gotty:
+    hostname: mygotty
+    ports:
+      - 8989:8080
+    image: modenaf360/gotty:latest
+    stdin_open: true
+    tty: true
+    environment:
+      - GOTTY_PASSWORD=apassword  # Set your actual secure password here
