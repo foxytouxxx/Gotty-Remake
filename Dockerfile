@@ -18,9 +18,8 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists*
 
 # Set the default password (CHANGE THIS TO A SECURE PASSWORD)
-ENV GOTTY_USERNAME myusername
-ENV GOTTY_PASSWORD mypassword
-
+ENV GOTTY_USERNAME root
+ENV GOTTY_PASSWORD 1234
 # Copy the modified run_gotty.sh script
 COPY run_gotty.sh /run_gotty.sh
 
