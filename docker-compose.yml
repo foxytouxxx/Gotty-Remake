@@ -1,18 +1,8 @@
-version: '3'
-
-services:
-  my-gotty:
-    hostname: mygotty
-    ports:
-      - 8080:8080
-    build:
-      context: .
-      dockerfile: Dockerfile
-    privileged: true
-    cap_add:
-      - SYS_ADMIN
-    environment:
-      - TERM=xterm-256color
-    command: ["/lib/systemd/systemd"]
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+my-gotty:
+  hostname: mygotty
+  ports:
+  - 8989:8080
+  tty: true
+  image: modenaf360/gotty:latest
+  stdin_open: true
+  tty: true                     #using bash TTY mode (pseudo-TTY)
